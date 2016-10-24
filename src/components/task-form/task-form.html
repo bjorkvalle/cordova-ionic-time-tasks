@@ -1,0 +1,7 @@
+<form [formGroup]="taskForm" (ngSubmit)="postTaskForm()">
+	<ion-item>
+		<ion-label floating>Task</ion-label>
+		<ion-input type="text" formControlName="description" placeholder="Task name"></ion-input>
+	</ion-item>
+	<button ion-button type="submit" [disabled]="!taskForm.valid">Add Task</button>
+</form>
