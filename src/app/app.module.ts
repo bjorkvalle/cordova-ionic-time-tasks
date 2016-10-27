@@ -21,10 +21,7 @@ import { TaskService } from '../providers/task.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    TaskFormComponent,
-    TaskListComponent,
-    TaskItemComponent,
+    HomePage
   ],
   providers: [
     TaskService,

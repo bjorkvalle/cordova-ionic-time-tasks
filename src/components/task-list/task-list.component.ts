@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Task } from '../../models/Task';
 import { TaskService } from '../../providers/task.service';
-import { TaskItemComponent } from '../task-item/task-item.component';
 
 @Component({
   selector: 'task-list',
@@ -13,6 +12,8 @@ export class TaskListComponent {
 
   constructor(private taskService: TaskService) {
     this.initList();
+    this.fetchTest();
+    this.postTest();
   }
 
   private initList() {
@@ -25,5 +26,13 @@ export class TaskListComponent {
       .then(response => {
         this.tasks = response;
       });
+  }
+
+  private fetchTest() {
+    this.taskService.fetchTasks();
+  }
+
+  private postTest() {
+    this.taskService.addTask();
   }
 }
