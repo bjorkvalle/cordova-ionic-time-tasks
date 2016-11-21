@@ -1,15 +1,17 @@
-import { Component, Input } from '@angular/core';
-import { Task } from '../../models/Task';
+import { Component, Input } from "@angular/core";
+import { ITask } from "../../models/itask";
 
 @Component({
-  selector: 'task-item',
-  templateUrl: 'task-item.html'
+  selector: "task-item",
+  templateUrl: "task-item.html",
 })
 export class TaskItemComponent {
   // To define an input for a component, we use the @Input decorator.
-  @Input() task: Task;
+  @Input() task: ITask;
 
-  constructor() { }
+  constructor() {
+    console.log("Created Task Item Component");
+  }
 
   public mode() {
     console.log(this.task);

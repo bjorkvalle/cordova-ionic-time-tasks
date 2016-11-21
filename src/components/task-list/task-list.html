@@ -1,3 +1,12 @@
 <ion-list>
-	<task-item *ngFor="let task of tasks" [task]="task"></task-item>
+
+	<ion-item *ngFor="let task of tasks">
+
+		<button ion-item (tap)="mode(task)">
+				<h3>{{task.description}}</h3>
+				<p>{{task.startTime}}</p>
+		</button>
+
+	</ion-item>
+
 </ion-list>
