@@ -6,7 +6,6 @@ import { TaskFormComponent } from '../components/task-form/task-form.component';
 import { TaskListComponent } from '../components/task-list/task-list.component';
 // import { TaskItemComponent } from "../components/task-item/task-item.component";
 import { TaskService } from '../providers/task.service';
-import { TestObservables } from '../providers/test-observables';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { TestObservables } from '../providers/test-observables';
   ],
   providers: [
     TaskService,
-    TestObservables,
   ]
 })
 export class AppModule { }

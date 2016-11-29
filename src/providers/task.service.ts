@@ -9,10 +9,6 @@ import { ITask } from '../models/itask';
 @Injectable()
 export class TaskService {
 
-  // public get tasks() {
-  //   return this._tasks.asObservable();
-  // }
-
   private tasksUrl = 'http://rest.learncode.academy/api/bjorkvalle/test';
   private _tasks: ITask[];
 

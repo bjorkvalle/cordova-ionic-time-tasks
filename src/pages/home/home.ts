@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TaskService } from '../../providers/task.service';
-// import { TestObservables } from '../../providers/test-observables';
 import { ITask } from '../../models/itask';
 
 @Component({
@@ -14,12 +13,9 @@ export class HomePage {
 
   private testObj: any;
 
-  constructor(public navCtrl: NavController, private taskSvc: TaskService) { }//, private testObs: TestObservables) { }
+  constructor(public navCtrl: NavController, private taskSvc: TaskService) { }
 
   public ionViewDidLoad() {
-    // this.get();
-    // this.testObs.Subjecto.subscribe(value => console.log('Got new value AGAIN:', value));
-    // this.testObs.Subjecto.next(194222222222);
   }
 
   private get() {
