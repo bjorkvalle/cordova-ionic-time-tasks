@@ -6,8 +6,16 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
+	<ion-list>
+
+		<button *ngFor="let task of tasks" ion-item (tap)="mode(task)">
+			<h3>{{task.description}}</h3>
+			<p>{{task.milliseconds/1000}}</p>
+		</button>
+
+	</ion-list>
 	<!--<task-list [tasks]="tasks"></task-list>
 	<task-form></task-form>-->
 

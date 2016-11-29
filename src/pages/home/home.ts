@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TaskService } from '../../providers/task.service';
+// import { TestObservables } from '../../providers/test-observables';
 import { ITask } from '../../models/itask';
 
 @Component({
@@ -11,15 +12,20 @@ export class HomePage {
 
   public tasks: ITask[];
 
-  constructor(public navCtrl: NavController, private taskSvc: TaskService) { }
+  private testObj: any;
+
+  constructor(public navCtrl: NavController, private taskSvc: TaskService) { }//, private testObs: TestObservables) { }
 
   public ionViewDidLoad() {
-    console.log('Loaded Home Page');
+    // this.get();
+    // this.testObs.Subjecto.subscribe(value => console.log('Got new value AGAIN:', value));
+    // this.testObs.Subjecto.next(194222222222);
+  }
 
+  private get() {
     this.taskSvc.getAll()
       .subscribe(
       res => {
-        console.log('get', res);
         this.tasks = res;
 
         if (this.tasks.length > 0) {
@@ -27,25 +33,42 @@ export class HomePage {
             .subscribe(
             resp => console.log(resp),
             err => console.error(err));
-
-          // this.taskSvc.removeTask(this.tasks[this.tasks.length - 1])
-          //   .subscribe(
-          //   resp => console.log(resp),
-          //   err => console.error(err));
         }
+
+        // this.taskSvc.removeTask(this.tasks[this.tasks.length - 1])
+        //   .subscribe(
+        //   resp => console.log(resp),
+        //   err => console.error(err));
+        // }
       },
       err => console.error('fail get', err)
       );
 
+    setInterval(() => {
+      if (this.tasks !== undefined && this.tasks.length > 0) {
+        for (let t of this.tasks) {
+          if (t.active) {
+            t.milliseconds = t.milliseconds + (new Date().getTime() - t.startMs);
+          } else {
+            t.startMs = new Date().getTime();
+          }
+        }
+      }
+    }, 1);
 
-    setTimeout(() => {
-      this.taskSvc.addTask('Trying to add a new task', new Date(), 1)
-        .subscribe(
-        res => console.log('add', res),
-        err => console.error('add fail', err)
-        );
-    }, 2000);
+    // setTimeout(() => {
+    //   this.taskSvc.addTask('Trying to add a new task', new Date(), 1)
+    //     .subscribe(
+    //     res => console.log('add', res),
+    //     err => console.error('add fail', err)
+    //     );
+    // }, 2000);
   }
 
+  public mode(task: ITask) {
+    task.active = !task.active;
+
+    task.startMs = new Date().getTime();
+  }
 
 }

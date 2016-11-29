@@ -2,25 +2,26 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+// import 'rxjs/add/operator/asObservable';
 import { Observable } from 'rxjs';
 import { ITask } from '../models/itask';
 
 @Injectable()
 export class TaskService {
 
+  // public get tasks() {
+  //   return this._tasks.asObservable();
+  // }
+
   private tasksUrl = 'http://rest.learncode.academy/api/bjorkvalle/test';
-  private tasks: ITask[];
-  // private tasks: any[];
+  private _tasks: ITask[];
 
   constructor(private http: Http) {
-    console.log('Created Task Service');
   }
 
   public getAll(): Observable<any> {
     return this.http.get(this.tasksUrl, this.auth())
-      .map(res => {
-        return <ITask[]>res.json();
-      })
+      .map(res => <ITask[]>res.json())
       .catch(err => { return Observable.throw(err); });
   }
 
@@ -43,6 +44,9 @@ export class TaskService {
       return Observable.throw('Nothing to update');
 
     task.description = 'funka, please!';
+    task.milliseconds = 0;
+    task.active = false;
+    task.startMs = new Date().getTime();
 
     return this.http.put(`${this.tasksUrl}/${task.id}`, JSON.stringify(task), this.auth())
       .map(resp => resp)
