@@ -14,7 +14,7 @@ export class TaskData extends DataFactory {
 
   constructor(public http: Http) {
     super(http);
-    this._urlEnding = 'bjorkvalle/tasks';
+    this._urlEnding = 'bjorkvallo/tasks';
   }
 
   public getTasks() {
@@ -22,15 +22,15 @@ export class TaskData extends DataFactory {
   }
 
   public addTask(data: any) {
-    return this.post('bjorkvalle/tasks', data);
+    return this.post(this._urlEnding, data);
   }
 
   public updateTask(task: ITask): Observable<any> {
-    return this.update('bjorkvalle/tasks', task, task.id);
+    return this.update(this._urlEnding, task, task.id);
   }
 
   public removeTask(task: ITask) {
-    return this.delete('bjorkvalle/tasks', task.id);
+    return this.delete(this._urlEnding, task.id);
   }
 
   private load(): Observable<any> {
