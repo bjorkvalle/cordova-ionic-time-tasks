@@ -84,6 +84,7 @@ export class Main {
         for (let t of this.tasks) {
           if (t && t.active) {
             t.oldTime = t.newTime;
+            t.start = new Date();
             this.taskData.updateTask(t).subscribe(res => console.info('autosave', res));
           }
         }
