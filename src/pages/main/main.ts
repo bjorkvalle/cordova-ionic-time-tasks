@@ -17,7 +17,16 @@ export class Main {
 
   ionViewDidLoad() {
     this.taskData.getTasks().subscribe(
-      res => this.tasks = <ITask[]>res,
+      res => {
+        this.tasks = <ITask[]>res;
+
+        for (let t of this.tasks) {
+          if (t && t.active) {
+            t.active = false;
+            this.taskData.updateTask(t).subscribe(res => console.info(res));
+          }
+        }
+      },
       err => console.error(err)
     );
   }
