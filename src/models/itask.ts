@@ -1,10 +1,9 @@
 export interface ITask {
-  id: string;
+  id: number;
   description: string;
-  startTime: Date;
-  startMs: number;
-  currentMs: number;
-  progressedTime: number;
-  milliseconds: number;
+  start: Date;
+  oldTime: number;
+  newTime: number;
   active: boolean;
+  utcTime: Date;
 }

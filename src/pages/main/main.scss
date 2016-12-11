@@ -1,0 +1,11 @@
+page-main {
+  .active{
+    background-color: color($colors, secondary);
+    color: whitesmoke;
+    // background-color: lightgreen;
+    p{
+      color: whitesmoke;
+
+    }
+  }
+}

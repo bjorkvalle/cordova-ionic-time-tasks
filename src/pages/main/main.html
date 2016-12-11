@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Skill Timer</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (tap)="confirmDelete()">
+        <ion-icon name="flame"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <button *ngFor="let task of tasks" ion-item (tap)="mode(task)" [ngClass]="{ 'active': task.active }">
+			<h3>{{task.description}}</h3>
+      <p> {{ task.utcTime | date:'HH:mm:ss' }} </p>
+      <!--<p> {{task.newTime/1000}} </p>-->
+  </button>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <task-form [tasks]="tasks"></task-form>
+  </ion-toolbar>
+</ion-footer>
